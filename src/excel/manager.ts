@@ -9,6 +9,7 @@ import type {
 import * as ExcelJs from "exceljs";
 import { Parser } from "csv-parse";
 import { Readable } from "stream";
+import type { MenuItemProp } from "../types/ParametersType";
 
 /**
  * @param {Buffer} buffer
@@ -107,17 +108,16 @@ function sorting(
  * @returns {RowData}
  */
 function getDesired(data: RowData, desiredList: string[]): RowData {
-    console.log("Data[0]:", data[0]);
-    console.log("Desired: ", desiredList);
-    const header = data[0].slice(1);
-    console.log("Header: ", header);
+    // const header = data[0].slice(1);
     const indexes: number[] = data[0]
-        .map((item: CellType, idx: number) =>
-            desiredList.includes(item as string) ? idx : -1
-        )
-        .filter((index: number) => index >= 0); // Ensure '0' index is included
+        .map((item: CellType, idx: number) => {
+            if (desiredList.includes(item as string)) {
+                return idx;
+            } else return -1;
+        })
+        .filter((index: number) => index >= 0);
 
-    console.log("Indexes: ", indexes);
+    // console.log("Indexes: ", indexes);
 
     return data.map((row: RowType) => {
         const newItem = row.filter((cell: string | number, idx: number) =>
@@ -126,6 +126,14 @@ function getDesired(data: RowData, desiredList: string[]): RowData {
         return newItem;
     });
 }
+
+/**
+ *
+ * @param {RowData} data
+ * @param {string[]} headers
+ * @param {MenuItemProp} parameter
+ * @returns
+ */
 
 /**
  *
