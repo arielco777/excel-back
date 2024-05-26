@@ -57,8 +57,8 @@ router.post("/csv-format", upload.single("file"), async (req, res) => {
 
         console.log("WorkBook being created...");
 
-        const avg = JSON.parse(avgChosen);
-        const total = JSON.parse(totalChosen);
+        // const avg = JSON.parse(avgChosen);
+        // const total = JSON.parse(totalChosen);
 
         let parameterItems: MenuItemProp[];
         try {
