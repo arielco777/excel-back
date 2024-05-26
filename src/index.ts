@@ -5,7 +5,7 @@ import { excelRouter } from "./excel/excelController";
 const app = express();
 app.use(
     cors({
-        origin: "excel-front-lovat.vercel.app",
+        origin: "https://excel-front-lovat.vercel.app/",
     })
 );
 
