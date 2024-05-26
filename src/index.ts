@@ -5,20 +5,13 @@ import { excelRouter } from "./excel/excelController";
 const app = express();
 app.use(
     cors({
-        origin: "http://localhost:3000",
+        origin: "excel-front-lovat.vercel.app",
     })
 );
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
-
-app.use(
-    cors({
-        origin: "http://localhost:3000",
-    })
-);
-
 app.use("/excel", excelRouter);
 
 const port = 5000;
